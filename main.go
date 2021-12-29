@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	topic         = "message-log"
+	topic         = "queue-message-log"
 	brokerAddress = "localhost:9092"
 	partition     = 0
 )
@@ -79,7 +79,7 @@ func consume(ctx context.Context) {
 			panic("could not read message " + err.Error())
 		}
 
-		m := fmt.Sprintf("received  key: %s, value: %s, topic: %s", string(msg.Key), string(msg.Value), msg.Topic)
+		m := fmt.Sprintf("received  key: %s, value: %s, offset %d, topic: %s", string(msg.Key), string(msg.Value), msg.Offset, msg.Topic)
 		fmt.Println(m)
 	}
 
